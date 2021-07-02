@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 export default function Home() {
 	const td = new Date().toISOString().split('T')[0];
 	const [today, setToday] = useState(td);
-	const [favs, setFavs] = useState([]);
+	const [favs, setFavs] = useState<{ id: string }[]>([]);
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setToday(e.target.value);

@@ -1,0 +1,63 @@
+.parent {
+	max-width: 70rem;
+	margin: 0 auto;
+}
+.profile {
+	display: flex;
+	flex-direction: column;
+}
+
+.name {
+	font-size: 3rem;
+	margin-bottom: 2rem;
+}
+
+.img {
+	border-radius: 50%;
+}
+
+.detail {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 5rem;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-row-gap: 1rem;
+	margin: 2rem 0;
+}
+
+.value {
+	font-size: 2rem;
+	margin: 1rem 0;
+}
+
+.profileLabel {
+	font-size: 1.5rem;
+	color: #999;
+}
+
+.stat {
+	display: flex;
+	max-width: 650px;
+	justify-content: space-between;
+	padding: 10px 20px;
+	border-bottom: 1px solid #eee;
+	font-size: 1.8rem;
+}
+
+.summary {
+	border-bottom: 2px solid #999;
+	padding: 2rem 0;
+	font-size: 2rem;
+	cursor: pointer;
+}
+
+/* .statLabel {
+}
+
+.statValue {
+} */

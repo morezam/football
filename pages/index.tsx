@@ -22,7 +22,6 @@ export default function Home() {
 					},
 				})
 				.then(res => {
-					console.log(res.data);
 					const respo = favLeagues(res.data.response);
 					setFavs(respo);
 				})

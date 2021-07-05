@@ -17,7 +17,6 @@ const Fixture = () => {
 					},
 				})
 				.then(res => {
-					console.log(res.data.response);
 					setGame(res.data.response[0]);
 				})
 				.catch(e => console.log(e));

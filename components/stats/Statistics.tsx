@@ -1,8 +1,9 @@
 import React from 'react';
+import { statistics } from '../../api/statistics';
 import { createStatObject } from '../../lib/createStatObject';
 import Statistic from './Statistic';
 
-const Statistics = ({ stats }) => {
+const Statistics = ({ stats = statistics }) => {
 	if (stats.length === 0) {
 		return <p>Loading...</p>;
 	}

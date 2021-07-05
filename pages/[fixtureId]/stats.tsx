@@ -21,11 +21,11 @@ const LineupPage = () => {
 				})
 				.catch(e => console.log(e));
 		};
-		req();
+		// req();
 	}, [id]);
 	return (
 		<div>
-			<Statistics stats={stats} />
+			<Statistics />
 		</div>
 	);
 };

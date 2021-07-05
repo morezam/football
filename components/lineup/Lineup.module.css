@@ -1,20 +1,61 @@
 .parent {
 	display: flex;
 	flex-direction: column;
+	margin-top: 50px;
 }
 
 .grid {
 	display: grid;
-	width: 600px;
-	height: 60vh;
+	width: 75rem;
+	height: 60rem;
 	background-color: green;
 	justify-items: center;
 	align-items: center;
 	grid-column-gap: 10px;
-	border: 5px solid #fff;
+	/* margin: 0 auto; */
+	border: 2px solid #fff;
 }
 .row {
 	display: grid;
 	grid-row-gap: 30px;
 	grid-template-columns: minmax(min-content, 1fr);
+}
+
+.playerContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	color: #fff;
+}
+
+.playerImg {
+	border-radius: 50%;
+	width: 4.5rem;
+	height: 4.5rem;
+}
+
+.playerName {
+	text-align: center;
+	font-size: 1.6rem;
+	margin-top: 1rem;
+}
+
+.sub {
+	display: flex;
+	flex-direction: column;
+}
+
+.subLink {
+	text-decoration: none;
+	color: inherit;
+	font-size: 1.8rem;
+	border-bottom: 1px solid #eee;
+	padding: 1rem;
+	margin: 0 2rem;
+}
+
+.position {
+	font-size: 1.5rem;
+	color: #999;
 }

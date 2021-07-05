@@ -1,12 +1,12 @@
 import React from 'react';
 import Lineup from './Lineup';
-// import styles from './Lineup.module.css';
 import { data } from '../../api/data';
 
-const Lineups = ({ lineup }) => {
+const Lineups = ({ lineup = data }) => {
 	if (lineup.length === 0) {
 		return <p>Loading...</p>;
 	}
+
 	return (
 		<div style={{ display: 'flex' }}>
 			<Lineup home={true} datas={lineup[0]} />

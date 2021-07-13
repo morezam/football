@@ -1,12 +1,11 @@
 import styles from './player.module.css';
 
-const PlayerStat = ({
-	label,
-	stat,
-}: {
+interface PlayerStatProps {
 	label: string;
 	stat: number | string | null;
-}) => {
+}
+
+const PlayerStat = ({ label, stat }: PlayerStatProps) => {
 	if (stat === null) {
 		return null;
 	}

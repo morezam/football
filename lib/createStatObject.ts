@@ -1,12 +1,12 @@
-import { Stats } from './passAccuracy';
+import { Statistic } from '../types/teamStat';
 
 export const createStatObject = (
 	title: string,
-	homeStats: Stats[],
-	awayStats: Stats[]
+	homeStats: Statistic[],
+	awayStats: Statistic[]
 ) => {
-	const h = homeStats.find(stat => stat.type === title)?.value;
-	const a = awayStats.find(stat => stat.type === title)?.value;
+	const h = homeStats?.find(stat => stat.type === title)?.value;
+	const a = awayStats?.find(stat => stat.type === title)?.value;
 
 	return {
 		title,

@@ -13,3 +13,37 @@ html {
 body {
 	box-sizing: border-box;
 }
+
+.datePicker {
+	font-size: 1.8rem !important;
+}
+
+.datePicker .react-datepicker__day {
+	width: 4rem !important;
+	line-height: 1.7rem;
+}
+
+.datePicker .react-datepicker__week {
+	height: 4rem;
+}
+
+.datePicker .react-datepicker__day-names {
+	display: flex;
+	justify-content: space-around;
+	margin: 1rem 0;
+	font-size: 1.5rem;
+}
+
+.react-datepicker__header {
+	background-color: #0000ff6e !important;
+}
+
+.datePicker .react-datepicker__month-select {
+	font-size: 1.8rem;
+	text-align: center;
+	margin-top: 0.7rem;
+}
+
+.react-datepicker__current-month {
+	font-size: 1.5rem;
+}

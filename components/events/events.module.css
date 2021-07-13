@@ -1,0 +1,23 @@
+.parent {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 75rem;
+	font-size: 1.8rem;
+}
+
+.time {
+	/* padding: 0 2rem; */
+	padding: 0 2rem;
+	color: #333;
+}
+
+.card {
+	height: 3rem;
+	width: 2rem;
+	background-color: #ff0000;
+}
+
+.missed {
+	background-color: red;
+}

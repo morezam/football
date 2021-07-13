@@ -1,45 +1,44 @@
 import React from 'react';
-import { events } from '../../api/events';
-import CradType from './CradType';
-import SubType from './SubType';
-import GoalType from './GoalType';
-const Events = ({ homeId }: { homeId: string }) => {
-	const typeChange = eve => {
-		if (eve.type === 'Goal') {
-			return (
-				<GoalType
-					type={eve.detail}
-					name={eve.player.name}
-					assist={eve.assist.name}
-				/>
-			);
-		}
-		if (eve.type === 'Card') {
-			return <CradType type={eve.detail} name={eve.player.name} />;
-		}
-		if (eve.type === 'subst') {
-			return <SubType playerIn={eve.player.name} playerOut={eve.assist.name} />;
-		}
-	};
+import styles from './events.module.css';
+import EventDetails from './Event';
+import { Event } from '../../types/eventInterface';
+
+interface EventsProps {
+	homeId?: number | string;
+	events?: Event[];
+}
+
+const Events = ({ homeId, events }: EventsProps) => {
+	if (!events || !homeId) {
+		return <p>Loading ...</p>;
+	}
+
+	if (events.length === 0) {
+		return null;
+	}
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				width: '500px',
-			}}>
+		<div className={styles.parent}>
 			{events.map(eve => (
 				<div
-					key={eve.time.elapsed + eve.player.id}
+					key={`${eve.time.elapsed} + ${
+						eve.player.id ? eve.player.id : eve.team.id
+					}`}
 					style={{
 						alignSelf: `${eve.team.id == homeId ? 'flex-start' : 'flex-end'}`,
 						display: 'flex',
 						flexDirection: `${eve.team.id == homeId ? 'row' : 'row-reverse'}`,
 						alignItems: 'center',
+						margin: '1rem 0',
 					}}>
-					<p style={{ padding: '0 10px' }}>{eve.time.elapsed} </p>
-					{typeChange(eve)}
+					<p className={styles.time}>{eve.time.elapsed} </p>
+					<EventDetails
+						type={eve.type}
+						player={eve.player.name ? eve.player.name : ''}
+						assist={eve.assist.name ? eve.assist.name : ''}
+						detail={eve.detail}
+						home={eve.team.id == homeId ? true : false}
+					/>
 				</div>
 			))}
 		</div>

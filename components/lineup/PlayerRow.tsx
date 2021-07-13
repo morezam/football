@@ -18,10 +18,9 @@ const PlayerRow = ({
 				return (
 					<Link key={player.id} href={`/player/${player.id}`}>
 						<a
-							className={styles.playerContainer}
+							className={`${styles.playerContainer} ${home ? '' : styles.away}`}
 							style={{
 								gridRow: `${+row[1]}/${+row[1] + 1}`,
-								transform: `${home ? '' : 'rotate(180deg)'}`,
 							}}>
 							{/* eslint-disable-next-line @next/next/no-img-element */}
 							<img

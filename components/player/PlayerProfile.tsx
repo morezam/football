@@ -1,13 +1,11 @@
 import React from 'react';
 import styles from './player.module.css';
-
-const PlayerProfile = ({
-	label,
-	value,
-}: {
+interface PlayerProfileProps {
 	label: string;
 	value: string | number;
-}) => {
+}
+
+const PlayerProfile = ({ label, value }: PlayerProfileProps) => {
 	return (
 		<div className={styles.profile}>
 			<p className={styles.value}>{value}</p>

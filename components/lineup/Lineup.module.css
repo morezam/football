@@ -1,24 +1,75 @@
+.lineups {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	position: relative;
+	width: 70rem;
+	height: 140rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.subs {
+	width: 60rem;
+	display: flex;
+	margin: 0 auto;
+	justify-content: space-around;
+}
+
 .parent {
 	display: flex;
 	flex-direction: column;
-	margin-top: 50px;
+	padding: 2rem 0;
+	position: relative;
+	height: 63rem;
 }
 
 .grid {
 	display: grid;
-	width: 75rem;
-	height: 60rem;
-	background-color: green;
+	position: relative;
+	background-color: rgb(41, 155, 41);
 	justify-items: center;
 	align-items: center;
-	grid-column-gap: 10px;
-	/* margin: 0 auto; */
-	border: 2px solid #fff;
+	height: 60rem;
+	grid-column-gap: 1rem;
+	border: 1px solid #fff;
+}
+
+.kir {
+	width: 10rem;
+	height: 20rem;
+	background-color: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.644);
+	position: absolute;
+}
+
+.kos {
+	width: 10rem;
+	height: 10rem;
+	background-color: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.644);
+	position: absolute;
+	border-radius: 50%;
+	right: -4.8rem;
 }
 .row {
 	display: grid;
-	grid-row-gap: 30px;
+	grid-row-gap: 5.5rem;
 	grid-template-columns: minmax(min-content, 1fr);
+}
+
+.home {
+	transform: rotate(90deg);
+}
+.rowHome > * {
+	transform: rotate(-90deg);
+}
+
+.away {
+	transform: rotate(270deg);
+}
+.rowAway > * {
+	transform: rotate(90deg);
 }
 
 .playerContainer {
@@ -26,7 +77,9 @@
 	flex-direction: column;
 	align-items: center;
 	text-decoration: none;
-	color: #fff;
+	color: rgb(255, 242, 242);
+	position: relative;
+	z-index: 4;
 }
 
 .playerImg {
@@ -39,11 +92,14 @@
 	text-align: center;
 	font-size: 1.6rem;
 	margin-top: 1rem;
+	width: 13rem;
 }
 
 .sub {
 	display: flex;
 	flex-direction: column;
+	grid-row: 2/3;
+	grid-column: 1/2;
 }
 
 .subLink {
@@ -58,4 +114,15 @@
 .position {
 	font-size: 1.5rem;
 	color: #999;
+	margin-left: 1rem;
+}
+
+@media (max-width: 600px) {
+	.position {
+		margin-left: 0;
+		display: block;
+	}
+	.grid {
+		grid-column-gap: 0;
+	}
 }

@@ -5,7 +5,10 @@ import styles from './Lineup.module.css';
 import Substitutes from './Substitutes';
 import { createPlayersObject } from '../../lib/createPlayersObject';
 
-const Lineup = ({ home, datas }: { home: boolean; datas: TeamDetails }) => {
+const Lineup = ({ home, datas }: { home: boolean; datas?: TeamDetails }) => {
+	if (!datas) {
+		return null;
+	}
 	const rows = datas.formation.split('-');
 	// add 1 beacuse goalkeaper's position is not in formation
 	rows.unshift('1');
@@ -13,20 +16,21 @@ const Lineup = ({ home, datas }: { home: boolean; datas: TeamDetails }) => {
 	const playersDetail = datas.startXI.map(n => n.player);
 	const playersObject = createPlayersObject(playersDetail);
 	return (
-		<div className={styles.parent}>
+		<div className={styles.parent} style={{ width: `${rows.length * 14}rem` }}>
 			<div
-				className={styles.grid}
+				className={`${styles.grid} ${home ? styles.home : styles.away}`}
 				style={{
-					gridTemplateColumns: `repeat(${rows.length}, 1fr)`,
-					transform: `${home ? '' : 'rotate(180deg)'}`,
+					gridTemplateColumns: `repeat(${rows.length}, max-content)`,
 				}}>
 				<CreateRowsAndPlayers
 					rows={rows}
 					playersObject={playersObject}
 					home={home ? true : false}
 				/>
+				<div
+					className={styles.kir}
+					style={{ right: `${rows.length * 12.2}rem` }}></div>
 			</div>
-			<Substitutes subs={datas.substitutes} />
 		</div>
 	);
 };

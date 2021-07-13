@@ -3,8 +3,9 @@ import Image from 'next/image';
 import PlayerProfile from './PlayerProfile';
 import PlayerStat from './PlayerStat';
 import styles from './player.module.css';
+import { PlayerStats } from '../../types/playerStat';
 
-const Player = ({ playerDetail }) => {
+const Player = ({ playerDetail }: { playerDetail?: PlayerStats }) => {
 	console.log(playerDetail);
 	if (!playerDetail) {
 		return <p>Loading...</p>;
@@ -42,7 +43,7 @@ const Player = ({ playerDetail }) => {
 			</div>
 			<div>
 				{playerDetail.statistics.map(stat => (
-					<details key={stat.team.id + stat.games.minutes}>
+					<details key={+stat.team.id + stat.games.minutes}>
 						<summary className={styles.summary}>
 							{stat.team.name}: {stat.league.name} - {stat.league.season}/
 							{+stat.league.season + 1}

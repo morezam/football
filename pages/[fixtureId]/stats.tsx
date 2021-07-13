@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useRouter, NextRouter } from 'next/router';
 import Statistics from '../../components/stats/Statistics';
 import football from '../../api/football';
+import { TeamStat } from '../../types/teamStat';
 
 const LineupPage = () => {
 	const router: NextRouter = useRouter();
 	const id = router.query.fixtureId ? router.query.fixtureId.toString() : '';
-	const [stats, setStats] = useState([]);
+	const [stats, setStats] = useState<TeamStat[]>();
 	useEffect(() => {
 		const req = async () => {
 			const res = await football
-				.get('/fixtures//statistics', {
+				.get('/fixtures/statistics', {
 					params: {
 						fixture: id,
 					},
@@ -21,11 +22,11 @@ const LineupPage = () => {
 				})
 				.catch(e => console.log(e));
 		};
-		// req();
+		req();
 	}, [id]);
 	return (
 		<div>
-			<Statistics />
+			<Statistics stats={stats} />
 		</div>
 	);
 };

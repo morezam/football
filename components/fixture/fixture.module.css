@@ -1,0 +1,85 @@
+.parentList {
+	max-width: 90rem;
+	margin: 0 auto;
+	list-style: none;
+	/* padding-bottom: 3rem; */
+}
+.title {
+	font-size: 2.5rem;
+	display: flex;
+	align-items: center;
+	border-bottom: 2px solid #999;
+	padding: 2rem;
+	margin: 2rem 0;
+}
+
+.title p {
+	margin-left: 2rem;
+}
+
+.games {
+	display: flex;
+	flex-direction: column;
+}
+
+.gameLink {
+	text-decoration: none;
+	font-size: 1.8rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: center;
+	margin-top: 3rem;
+	box-shadow: 0 1rem 2re rgba(0, 0, 0, 0.15);
+}
+
+.team {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.team p {
+	margin: 0 2rem;
+	font-size: 1.7rem;
+	color: #555;
+	margin-top: 1rem;
+}
+
+.time {
+	justify-self: center;
+	font-size: 2.5rem;
+	color: #333;
+	font-weight: bold;
+}
+
+.teamImg {
+	width: 10rem;
+	height: 10rem;
+}
+
+.fixture {
+	max-width: 80rem;
+	display: flex;
+	align-items: center;
+	font-size: 2rem;
+	justify-content: space-between;
+	padding: 2rem 6rem;
+	margin: 0 auto;
+	border-radius: 6rem;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)),
+		url('../../public/fixtureback.-1jpg.jpg');
+	background-position: top;
+	color: #fff;
+}
+
+.teamDet {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.result {
+	font-size: 5rem;
+}

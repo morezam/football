@@ -25,7 +25,6 @@ const Fixture = () => {
 				})
 				.then(res => {
 					setGame(res.data.response[0]);
-					console.log(res.data.response);
 				})
 				.catch(e => console.log(e));
 		};

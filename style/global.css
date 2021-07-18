@@ -12,10 +12,38 @@ html {
 
 body {
 	box-sizing: border-box;
+	background-color: var(--background);
+	color: var(--text-color);
+}
+
+:root {
+	--gray-1: #eee;
+	--gray-2: #343a40;
+	--gray-3: #687980;
+	--text-color: #333;
+	--background: #fdfaf6;
+}
+
+[data-theme='dark'] {
+	--gray-1: #302f2f;
+	--gray-2: #999;
+	--gray-3: #aaaaaa;
+	--background: #1a1c20;
+	--text-color: #f4f4f4;
 }
 
 .datePicker {
 	font-size: 1.8rem !important;
+	margin-top: 6rem;
+}
+
+.react-datepicker__triangle {
+	left: 3.5rem !important;
+	transform: translate(0px) !important;
+}
+
+.react-datepicker-wrapper {
+	display: block !important;
 }
 
 .datePicker .react-datepicker__day {

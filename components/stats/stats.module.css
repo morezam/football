@@ -1,6 +1,5 @@
 .statBack {
 	padding: 2rem;
-	color: #333;
 }
 
 .stat {
@@ -10,7 +9,7 @@
 	max-width: 70rem;
 	margin: 0 auto;
 	padding: 1rem 0;
-	border-bottom: 1px solid rgba(10, 131, 5, 0.1);
+	border-bottom: 1px solid var(--gray-1);
 }
 
 .bigger {

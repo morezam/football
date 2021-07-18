@@ -4,14 +4,17 @@ import PlayerProfile from './PlayerProfile';
 import PlayerStat from './PlayerStat';
 import styles from './player.module.css';
 import { PlayerStats } from '../../types/playerStat';
+import Back from '../Back';
 
 const Player = ({ playerDetail }: { playerDetail?: PlayerStats }) => {
-	console.log(playerDetail);
 	if (!playerDetail) {
 		return <p>Loading...</p>;
 	}
 	return (
 		<div className={styles.parent}>
+			<Back>
+				<p>Back to game</p>
+			</Back>
 			<div className={styles.detail}>
 				<h2 className={styles.name}>
 					{playerDetail.player.firstname} {playerDetail.player.lastname}

@@ -1,6 +1,7 @@
 .parent {
 	max-width: 70rem;
 	margin: 0 auto;
+	padding: 2rem;
 }
 .profile {
 	display: flex;
@@ -31,7 +32,7 @@
 }
 
 .value {
-	font-size: 2rem;
+	font-size: 1.8rem;
 	margin: 1rem 0;
 }
 
@@ -45,19 +46,13 @@
 	max-width: 650px;
 	justify-content: space-between;
 	padding: 10px 20px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid var(--gray-1);
 	font-size: 1.8rem;
 }
 
 .summary {
 	border-bottom: 2px solid #999;
 	padding: 2rem 0;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	cursor: pointer;
 }
-
-/* .statLabel {
-}
-
-.statValue {
-} */

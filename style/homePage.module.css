@@ -1,0 +1,49 @@
+.favs {
+	padding-bottom: 7rem;
+}
+
+.picker {
+	max-width: 70rem;
+	padding: 0 2rem;
+	margin: 0 auto;
+	position: relative;
+}
+
+.datePicker {
+	display: none;
+}
+
+.img {
+	z-index: 10;
+	cursor: pointer;
+}
+
+.darkMode {
+	position: absolute;
+	right: 2rem;
+	top: 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.body {
+	width: 4rem;
+	height: 2rem;
+	cursor: pointer;
+	margin-bottom: 1rem;
+	border-radius: 1rem;
+	border: 1px solid var(--gray-2);
+	position: relative;
+	transition: all 0.3s;
+}
+
+.circle {
+	transition: all 0.3s;
+	height: 1.8rem;
+	width: 1.8rem;
+	background-color: var(--text-color);
+	border-radius: 50%;
+	position: absolute;
+}

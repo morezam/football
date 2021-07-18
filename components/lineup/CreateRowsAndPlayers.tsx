@@ -12,15 +12,15 @@ interface RowProps {
 const CreateRowsAndPlayers = ({ rows, playersObject, home }: RowProps) => {
 	return (
 		<>
-			{!home && <div className={styles.kos}></div>}
 			{rows.map((row, i) => (
 				<div
 					key={i}
-					className={`${styles.row} ${home ? styles.rowHome : styles.rowAway}`}
+					className={`${styles.row} ${home && styles.rowHome}`}
 					id={`row-${home ? 'h' : 'a'}-${i + 1}`}
 					style={{
-						gridTemplateRows: `repeat(${row}, 1fr)`,
+						gridTemplateColumns: `repeat(${row}, 1fr)`,
 						color: '#fff',
+						gridRow: `${rows.length - i}/${rows.length - i + 1}`,
 					}}>
 					<PlayerRow playerRow={playersObject[i + 1]} home={home} />
 				</div>

@@ -2,6 +2,8 @@
 import React, { FC } from 'react';
 import styles from './fixture.module.css';
 import { Game } from '../../types/gameInterface';
+import Back from '../Back';
+import Link from 'next/link';
 
 interface GameProps {
 	game?: Game;
@@ -17,6 +19,13 @@ const FixtureDetail: FC<GameProps> = ({ game }) => {
 	} `;
 	return (
 		<div className={styles.fixture}>
+			<Back>
+				<Link href="/">
+					<a style={{ color: 'var(--text-color)', textDecoration: 'none' }}>
+						Back To all Games
+					</a>
+				</Link>
+			</Back>
 			<div className={styles.teamDet}>
 				<img
 					alt={game.teams.home.name}

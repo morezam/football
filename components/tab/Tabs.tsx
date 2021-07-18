@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react';
+import styles from './tab.module.css';
 
 interface TabsProps {
 	children?: ReactElement[];
@@ -11,20 +12,9 @@ const Tabs = ({ children }: TabsProps) => {
 	}
 	return (
 		<div>
-			<ul
-				style={{
-					display: 'flex',
-					fontSize: '1.8rem',
-					listStyle: 'none',
-					maxWidth: '70rem',
-					margin: '2rem auto',
-					justifyContent: 'center',
-				}}>
+			<ul className={styles.tabList}>
 				{children.map((child, i) => (
-					<li
-						style={{ cursor: 'pointer', margin: '0 2rem' }}
-						key={i}
-						onClick={() => setIndex(i)}>
+					<li className={styles.li} key={i} onClick={() => setIndex(i)}>
 						{child.props.title}
 					</li>
 				))}

@@ -1,0 +1,15 @@
+.tabList {
+	display: flex;
+	font-size: 1.8rem;
+	list-style: outside none none;
+	max-width: 70rem;
+	margin: 2rem auto;
+	justify-content: center;
+	z-index: 10;
+	position: relative;
+}
+
+.li {
+	cursor: pointer;
+	margin: 0px 2rem;
+}

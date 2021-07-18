@@ -1,27 +1,17 @@
 .lineups {
 	display: flex;
 	flex-direction: column;
-	margin: 0 auto;
-	position: relative;
-	width: 70rem;
-	height: 140rem;
 	align-items: center;
-	justify-content: center;
+	max-width: 60rem;
+	margin: 0 auto;
+	overflow: hidden;
 }
 
 .subs {
-	width: 60rem;
+	max-width: 70rem;
 	display: flex;
-	margin: 0 auto;
+	margin: 2rem auto;
 	justify-content: space-around;
-}
-
-.parent {
-	display: flex;
-	flex-direction: column;
-	padding: 2rem 0;
-	position: relative;
-	height: 63rem;
 }
 
 .grid {
@@ -30,46 +20,39 @@
 	background-color: rgb(41, 155, 41);
 	justify-items: center;
 	align-items: center;
-	height: 60rem;
-	grid-column-gap: 1rem;
+	padding: 0 3rem;
+	grid-row-gap: 3rem;
 	border: 1px solid #fff;
 }
 
-.kir {
-	width: 10rem;
-	height: 20rem;
+.penaltyArea {
+	width: 25rem;
+	height: 12rem;
 	background-color: transparent;
 	border: 1px solid rgba(255, 255, 255, 0.644);
 	position: absolute;
 }
 
-.kos {
-	width: 10rem;
-	height: 10rem;
+.centerCircle {
+	width: 12rem;
+	height: 12rem;
 	background-color: transparent;
-	border: 1px solid rgba(255, 255, 255, 0.644);
+	border: 4px solid rgba(255, 255, 255, 0.15);
 	position: absolute;
 	border-radius: 50%;
-	right: -4.8rem;
+	top: -6rem;
+	left: 23rem;
 }
 .row {
 	display: grid;
-	grid-row-gap: 5.5rem;
-	grid-template-columns: minmax(min-content, 1fr);
+	grid-template-rows: 1fr;
 }
 
 .home {
-	transform: rotate(90deg);
+	transform: rotate(180deg);
 }
 .rowHome > * {
-	transform: rotate(-90deg);
-}
-
-.away {
-	transform: rotate(270deg);
-}
-.rowAway > * {
-	transform: rotate(90deg);
+	transform: rotate(180deg);
 }
 
 .playerContainer {
@@ -106,23 +89,49 @@
 	text-decoration: none;
 	color: inherit;
 	font-size: 1.8rem;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid var(--gray-1);
 	padding: 1rem;
 	margin: 0 2rem;
 }
 
 .position {
 	font-size: 1.5rem;
-	color: #999;
+	color: var(--gray-2);
 	margin-left: 1rem;
 }
 
 @media (max-width: 600px) {
+	.lineups {
+		margin-top: 5rem;
+	}
+	.subs {
+		max-width: 50rem;
+		justify-content: flex-start;
+	}
 	.position {
 		margin-left: 0;
 		display: block;
 	}
-	.grid {
-		grid-column-gap: 0;
+
+	.row {
+		grid-column-gap: 1.5rem;
+	}
+
+	.playerName {
+		width: 8rem;
+		font-size: 1.4rem;
+	}
+
+	.subLink {
+		font-size: 1.5rem;
+	}
+
+	.playerImg {
+		border-radius: 50%;
+		/* width: 4rem;
+		height: 4rem; */
+	}
+	.centerCircle {
+		left: 16rem;
 	}
 }

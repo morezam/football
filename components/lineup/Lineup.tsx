@@ -16,11 +16,11 @@ const Lineup = ({ home, datas }: { home: boolean; datas?: TeamDetails }) => {
 	const playersDetail = datas.startXI.map(n => n.player);
 	const playersObject = createPlayersObject(playersDetail);
 	return (
-		<div className={styles.parent} style={{ width: `${rows.length * 14}rem` }}>
+		<div className={styles.parent}>
 			<div
-				className={`${styles.grid} ${home ? styles.home : styles.away}`}
+				className={`${styles.grid} ${home && styles.home}`}
 				style={{
-					gridTemplateColumns: `repeat(${rows.length}, max-content)`,
+					gridTemplateRows: `repeat(${rows.length}, 1fr)`,
 				}}>
 				<CreateRowsAndPlayers
 					rows={rows}
@@ -28,8 +28,9 @@ const Lineup = ({ home, datas }: { home: boolean; datas?: TeamDetails }) => {
 					home={home ? true : false}
 				/>
 				<div
-					className={styles.kir}
-					style={{ right: `${rows.length * 12.2}rem` }}></div>
+					className={styles.penaltyArea}
+					style={{ top: `${rows.length * 10}rem` }}></div>
+				{!home && <div className={styles.centerCircle}></div>}
 			</div>
 		</div>
 	);

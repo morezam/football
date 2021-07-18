@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import GameDetails from '../fixture/GameDetails';
 import styles from './h2h.module.css';
 import { Game } from '../../types/gameInterface';
@@ -23,7 +23,6 @@ const H2H = ({ homeId, awayId }: H2HProps) => {
 					},
 				})
 				.then(res => {
-					console.log(res.data.response);
 					setH2h(res.data.response);
 				})
 				.catch(e => console.log(e));
@@ -47,7 +46,7 @@ const H2H = ({ homeId, awayId }: H2HProps) => {
 						return (
 							<div key={game.fixture.id} className={styles.parent}>
 								<div className={styles.header}>
-									<p>
+									<p className={styles.title}>
 										{game.league.name} -{' '}
 										{game.league.round ? game.league.round : ''}
 									</p>

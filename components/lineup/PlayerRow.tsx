@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Player } from '../../lib/createPlayersObject';
 import styles from './Lineup.module.css';
 
@@ -18,15 +19,18 @@ const PlayerRow = ({
 				return (
 					<Link key={player.id} href={`/player/${player.id}`}>
 						<a
-							className={`${styles.playerContainer} ${home ? '' : styles.away}`}
+							className={`${styles.playerContainer} `}
 							style={{
-								gridRow: `${+row[1]}/${+row[1] + 1}`,
+								gridColumn: `${+row[1]}/${+row[1] + 1}`,
+								gridRow: '1/2',
 							}}>
 							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
+							<Image
 								src={`https://media.api-sports.io/football/players/${player.id}.png`}
 								alt={player.name}
 								className={styles.playerImg}
+								width={40}
+								height={40}
 							/>
 							<p className={styles.playerName}>
 								{player.number} {player.name}

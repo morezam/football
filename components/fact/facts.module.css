@@ -15,6 +15,6 @@
 }
 
 .label {
-	color: #999;
+	color: var(--gray-3);
 	margin-right: 2rem;
 }

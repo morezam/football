@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import football from '../../api/football';
 import styles from './fixture.module.css';
@@ -35,7 +34,9 @@ const Fixtures = ({ league, date }: FixturesProps) => {
 				.catch(e => console.log(e));
 		};
 		req();
-		return () => (mounted = false);
+		return () => {
+			mounted = false;
+		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [date]);
 	return (

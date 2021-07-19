@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import football from '../api/football';
 import { favLeagues } from '../lib/favLeagues';
@@ -52,7 +52,9 @@ export default function Home() {
 				.catch(e => console.log(e));
 		};
 		req();
-		return () => (mounted = false);
+		return () => {
+			mounted = false;
+		};
 	}, [today]);
 
 	return (
@@ -67,7 +69,7 @@ export default function Home() {
 					open={open}
 					onSelect={() => setOpen(false)}
 					onClickOutside={e => {
-						if (e.target.id !== 'notclick') {
+						if ((e.target as Element).id !== 'notclick') {
 							setOpen(false);
 						}
 					}}

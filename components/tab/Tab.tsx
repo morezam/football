@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react';
 
-const Tab = ({
-	title,
-	children,
-}: {
+interface TabProps {
 	title: string;
-	children: ReactElement;
-}) => {
+	children: ReactElement | ReactElement[];
+}
+
+const Tab = ({ title, children }: TabProps) => {
 	return <div>{children}</div>;
 };
 

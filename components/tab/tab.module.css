@@ -1,7 +1,9 @@
 .tabList {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(4, max-content);
+	grid-column-gap: 7rem;
 	font-size: 1.8rem;
-	list-style: outside none none;
+	list-style: none;
 	max-width: 70rem;
 	margin: 2rem auto;
 	justify-content: center;
@@ -11,5 +13,11 @@
 
 .li {
 	cursor: pointer;
-	margin: 0px 2rem;
+}
+
+@media (max-width: 600px) {
+	.tabList {
+		grid-column-gap: 1.5rem;
+		font-size: 1.5rem;
+	}
 }

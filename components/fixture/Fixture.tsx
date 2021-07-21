@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-import React, { FC } from 'react';
+import Image from 'next/image';
 import styles from './fixture.module.css';
 import { Game } from '../../types/gameInterface';
 import Back from '../Back';
@@ -9,7 +8,7 @@ interface GameProps {
 	game?: Game;
 }
 
-const FixtureDetail: FC<GameProps> = ({ game }) => {
+const FixtureDetail = ({ game }: GameProps) => {
 	if (!game) {
 		return null;
 	}
@@ -21,16 +20,15 @@ const FixtureDetail: FC<GameProps> = ({ game }) => {
 		<div className={styles.fixture}>
 			<Back>
 				<Link href="/">
-					<a style={{ color: 'var(--text-color)', textDecoration: 'none' }}>
-						Back To all Games
-					</a>
+					<a className={styles.back}>Back To all Games</a>
 				</Link>
 			</Back>
 			<div className={styles.teamDet}>
-				<img
+				<Image
 					alt={game.teams.home.name}
 					src={game.teams.home.logo}
-					className={styles.teamImg}
+					width={70}
+					height={70}
 				/>
 				{game.teams.home.name}
 			</div>
@@ -40,12 +38,12 @@ const FixtureDetail: FC<GameProps> = ({ game }) => {
 					: `${game.goals.home} - ${game.goals.away}`}
 			</div>
 			<div className={styles.teamDet}>
-				<img
+				<Image
 					alt={game.teams.away.name}
 					src={game.teams.away.logo}
-					className={styles.teamImg}
+					width={70}
+					height={70}
 				/>
-
 				{game.teams.away.name}
 			</div>
 		</div>

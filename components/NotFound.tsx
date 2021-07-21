@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NotFound = ({ title }: { title: string }) => {
 	return (
 		<div

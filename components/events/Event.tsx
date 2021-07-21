@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './events.module.css';
-interface EventType {
+
+interface EventTypeProps {
 	player: string;
 	assist: string;
 	type: Type;
@@ -13,7 +14,7 @@ enum Type {
 	card = 'Card',
 	goal = 'Goal',
 }
-const Event = ({ type, player, assist, detail, home }: EventType) => {
+const Event = ({ type, player, assist, detail, home }: EventTypeProps) => {
 	const changeType = (type: Type) => {
 		if (type === Type.goal && detail === 'Normal Goal') {
 			return <Image src="/ball.svg" alt="goal" width={35} height={35} />;

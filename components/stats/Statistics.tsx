@@ -1,4 +1,3 @@
-import React from 'react';
 import { createStatObject } from '../../lib/createStatObject';
 import Statistic from './Statistic';
 import styles from './stats.module.css';

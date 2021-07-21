@@ -20,3 +20,9 @@
 .missed {
 	background-color: red;
 }
+
+@media (max-width: 600px) {
+	.parent {
+		font-size: 1.6rem;
+	}
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Fixture } from '../../types/gameInterface';
 import NotFound from '../NotFound';
 import styles from './facts.module.css';

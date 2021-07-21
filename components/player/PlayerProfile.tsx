@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './player.module.css';
 interface PlayerProfileProps {
 	label: string;

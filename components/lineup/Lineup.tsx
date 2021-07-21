@@ -1,8 +1,6 @@
-import React from 'react';
 import { TeamDetails } from '../../types/lineupInterface';
 import CreateRowsAndPlayers from './CreateRowsAndPlayers';
 import styles from './Lineup.module.css';
-import Substitutes from './Substitutes';
 import { createPlayersObject } from '../../lib/createPlayersObject';
 
 const Lineup = ({ home, datas }: { home: boolean; datas?: TeamDetails }) => {
@@ -27,9 +25,6 @@ const Lineup = ({ home, datas }: { home: boolean; datas?: TeamDetails }) => {
 					playersObject={playersObject}
 					home={home ? true : false}
 				/>
-				<div
-					className={styles.penaltyArea}
-					style={{ top: `${rows.length * 10}rem` }}></div>
 				{!home && <div className={styles.centerCircle}></div>}
 			</div>
 		</div>

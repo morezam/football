@@ -1,5 +1,5 @@
 .statBack {
-	padding: 2rem;
+	padding: 1rem;
 }
 
 .stat {
@@ -10,10 +10,17 @@
 	margin: 0 auto;
 	padding: 1rem 0;
 	border-bottom: 1px solid var(--gray-1);
+	align-items: center;
 }
 
 .bigger {
 	background-color: rgba(7, 126, 7, 0.541);
 	border-radius: 2rem;
 	color: #fff;
+}
+
+@media (max-width: 600px) {
+	.stat {
+		font-size: 1.7rem;
+	}
 }

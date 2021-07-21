@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Lineup.module.css';
 import { PlayersObject } from '../../lib/createPlayersObject';
 import PlayerRow from './PlayerRow';
@@ -22,7 +21,7 @@ const CreateRowsAndPlayers = ({ rows, playersObject, home }: RowProps) => {
 						color: '#fff',
 						gridRow: `${rows.length - i}/${rows.length - i + 1}`,
 					}}>
-					<PlayerRow playerRow={playersObject[i + 1]} home={home} />
+					<PlayerRow playerRow={playersObject[i + 1]} />
 				</div>
 			))}
 		</>

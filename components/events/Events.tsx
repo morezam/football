@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './events.module.css';
 import EventDetails from './Event';
 import { Event } from '../../types/eventInterface';

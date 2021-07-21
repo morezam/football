@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import football from '../../api/football';
 import styles from './fixture.module.css';
 import GameDetails from './GameDetails';
 import { Game } from '../../types/gameInterface';
-import { League } from '../../types/league';
+import { favLeagues } from '../../lib/favLeagues';
+import { createDateForCalnedar } from '../../lib/createDateForCalnedar';
 
 interface FixturesProps {
-	league: League;
 	date: Date;
 }
 
-const Fixtures = ({ league, date }: FixturesProps) => {
+const Fixtures = ({ date }: FixturesProps) => {
 	const [games, setGames] = useState<Game[]>();
 
 	useEffect(() => {
-		const td = date.toISOString().split('T')[0];
+		const td = createDateForCalnedar(date);
 		let mounted = true;
 		const req = async () => {
 			const res = await football
 				.get('/fixtures', {
 					params: {
 						date: td,
-						league: league.id,
-						season: league.season,
 					},
 				})
 				.then(res => {
@@ -37,24 +35,31 @@ const Fixtures = ({ league, date }: FixturesProps) => {
 		return () => {
 			mounted = false;
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [date]);
 	return (
-		<ul className={styles.parentList}>
-			<li key={league.id}>
-				<div className={styles.title}>
-					<Image src={league.logo} alt={league.name} height={35} width={35} />
-					<p>{league.name}</p>
-				</div>
-				<div className={styles.games}>
-					{games ? (
-						games.map(game => <GameDetails key={game.fixture.id} game={game} />)
-					) : (
-						<p>No Matches Found</p>
-					)}
-				</div>
-			</li>
-		</ul>
+		<>
+			{games &&
+				favLeagues(games).map(game => (
+					<ul className={styles.parentList} key={game.league.id}>
+						<li>
+							<div className={styles.title}>
+								<Image
+									src={game.league.logo}
+									alt={game.league.name}
+									height={35}
+									width={35}
+								/>
+								<p>{game.league.name}</p>
+							</div>
+							<div className={styles.games}>
+								{game.games.map(match => (
+									<GameDetails key={match.fixture.id} game={match} />
+								))}
+							</div>
+						</li>
+					</ul>
+				))}
+		</>
 	);
 };
 

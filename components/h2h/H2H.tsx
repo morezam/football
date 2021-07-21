@@ -4,7 +4,6 @@ import styles from './h2h.module.css';
 import { Game } from '../../types/gameInterface';
 import football from '../../api/football';
 import { createHRDate } from '../../lib/createHRDate';
-import NotFound from '../NotFound';
 
 interface H2HProps {
 	homeId?: number | string;
@@ -29,9 +28,7 @@ const H2H = ({ homeId, awayId }: H2HProps) => {
 		};
 		req();
 	}, [homeId, awayId]);
-	// if (!homeId || awayId) {
-	// 	return <NotFound title="Head-to-head" />;
-	// }
+
 	return (
 		<div>
 			{h2h &&

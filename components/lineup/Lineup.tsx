@@ -1,8 +1,6 @@
-import React from 'react';
 import { TeamDetails } from '../../types/lineupInterface';
 import CreateRowsAndPlayers from './CreateRowsAndPlayers';
 import styles from './Lineup.module.css';
-import Substitutes from './Substitutes';
 import { createPlayersObject } from '../../lib/createPlayersObject';
 
 const Lineup = ({ home, datas }: { home: boolean; datas?: TeamDetails }) => {

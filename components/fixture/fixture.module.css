@@ -85,6 +85,11 @@
 	font-size: 5rem;
 }
 
+.back {
+	color: var(--text-color);
+	text-decoration: none;
+}
+
 @media (max-width: 600px) {
 	.teamImg {
 		width: 7rem;

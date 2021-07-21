@@ -1,16 +1,13 @@
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Player } from '../../lib/createPlayersObject';
 import styles from './Lineup.module.css';
 
-const PlayerRow = ({
-	playerRow,
-	home,
-}: {
+interface PlayerRowProps {
 	playerRow: Player[];
-	home: boolean;
-}) => {
+}
+
+const PlayerRow = ({ playerRow }: PlayerRowProps) => {
 	return (
 		<>
 			{playerRow.map(player => {
@@ -19,12 +16,11 @@ const PlayerRow = ({
 				return (
 					<Link key={player.id} href={`/player/${player.id}`}>
 						<a
-							className={`${styles.playerContainer} `}
+							className={styles.playerContainer}
 							style={{
 								gridColumn: `${+row[1]}/${+row[1] + 1}`,
 								gridRow: '1/2',
 							}}>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
 							<Image
 								src={`https://media.api-sports.io/football/players/${player.id}.png`}
 								alt={player.name}

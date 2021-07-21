@@ -1,17 +1,12 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import football from '../api/football';
-import { favLeagues } from '../lib/favLeagues';
 import Fixtures from '../components/fixture/Fixtures';
-import DatePicker from 'react-datepicker';
-import { League } from '../types/league';
-import { createDateForCalnedar } from '../lib/createDateForCalnedar';
 import styles from '../style/homePage.module.css';
-import NotFound from '../components/NotFound';
+import CustomDatePicker from '../components/CustomDatePicker';
+import DarkModeToggle from '../components/darkmode';
 
 export default function Home() {
 	const [today, setToday] = useState(new Date());
-	const [favs, setFavs] = useState<League[]>();
 	const [open, setOpen] = useState(false);
 	const [darkMode, setDarkMode] = useState('light');
 
@@ -29,55 +24,14 @@ export default function Home() {
 			: document.documentElement.setAttribute('data-theme', 'light');
 	}, [darkMode]);
 
-	const onBtnClick = () => {
-		setDarkMode(darkMode === 'light' ? 'dark' : 'light');
-	};
-
-	useEffect(() => {
-		const td = createDateForCalnedar(today);
-		let mounted = true;
-		const req = async () => {
-			const res = await football
-				.get('/fixtures', {
-					params: {
-						date: td,
-					},
-				})
-				.then(res => {
-					if (mounted) {
-						const respo = favLeagues(res.data.response);
-						setFavs(respo);
-					}
-				})
-				.catch(e => console.log(e));
-		};
-		req();
-		return () => {
-			mounted = false;
-		};
-	}, [today]);
-
 	return (
 		<div>
 			<div className={styles.picker}>
-				<DatePicker
-					selected={today}
-					onChange={(date: Date) => {
-						setToday(date);
-						sessionStorage.setItem('DATE', date.toString());
-					}}
+				<CustomDatePicker
+					today={today}
+					setToday={setToday}
 					open={open}
-					onSelect={() => setOpen(false)}
-					onClickOutside={e => {
-						if ((e.target as Element).id !== 'notclick') {
-							setOpen(false);
-						}
-					}}
-					showMonthDropdown
-					dropdownMode="select"
-					dateFormat="yyyy-MM-dd"
-					calendarClassName="datePicker"
-					className={styles.datePicker}
+					setOpen={setOpen}
 				/>
 				<Image
 					src="/calendar.svg"
@@ -88,20 +42,10 @@ export default function Home() {
 					onClick={() => setOpen(!open)}
 					className={styles.img}
 				/>
-				<div onClick={onBtnClick} className={styles.darkMode}>
-					<div className={styles.body}>
-						<div
-							className={styles.circle}
-							style={{
-								left: `${darkMode === 'light' ? '0' : '2rem'}`,
-							}}></div>
-					</div>
-				</div>
+				<DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
 			</div>
 			<div className={styles.favs}>
-				{favs &&
-					favs.map(fav => <Fixtures key={fav.id} date={today} league={fav} />)}
-				{!favs || (favs.length === 0 && <NotFound title="Matches" />)}
+				<Fixtures date={today} />
 			</div>
 		</div>
 	);

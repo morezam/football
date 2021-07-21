@@ -1,39 +1,17 @@
 import { Game } from '../types/gameInterface';
-import { League } from '../types/league';
 
-export const favLeagues = (arr: Game[]): League[] => {
-	const newArr = [];
-	const worldCup = arr.filter(el => el.league.id === 1)[0];
-	const UCL = arr.filter(el => el.league.id === 2)[0];
-	const UL = arr.filter(el => el.league.id === 3)[0];
-	const Euro = arr.filter(el => el.league.id === 4)[0];
-	const Copa = arr.filter(el => el.league.id === 9)[0];
-	const ACL = arr.filter(el => el.league.id === 17)[0];
-	const premierLeague = arr.filter(el => el.league.id === 39)[0];
-	const leagueOne = arr.filter(el => el.league.id === 61)[0];
-	const bundesLiga = arr.filter(el => el.league.id === 78)[0];
-	const SerieA = arr.filter(el => el.league.id === 135)[0];
-	const laLiga = arr.filter(el => el.league.id === 140)[0];
-	const IranLeague = arr.filter(el => el.league.id === 290)[0];
-	const IranHazfi = arr.filter(el => el.league.id === 495)[0];
+export const favLeagues = (arr: Game[]) => {
+	// Ids of some of the leagues that I care about.
+	// like world cup, UCL, PL and ...
+	const favs = [1, 2, 3, 4, 9, 17, 39, 61, 78, 135, 140, 290, 495];
+	const allGames = mapAllGamesToFavs(arr, favs);
 
-	newArr.push(
-		worldCup,
-		UCL,
-		UL,
-		Euro,
-		Copa,
-		ACL,
-		premierLeague,
-		leagueOne,
-		bundesLiga,
-		SerieA,
-		laLiga,
-		IranLeague,
-		IranHazfi
-	);
+	return allGames
+		.filter(game => game.length > 0)
+		.map(game => ({ league: game[0].league, games: game }));
+};
 
-	return newArr
-		.filter(league => league !== undefined)
-		.map(league => league.league);
+const mapAllGamesToFavs = (arr: Game[], favs: number[]) => {
+	const res = favs.map(fav => arr.filter(game => game.league.id === fav));
+	return res;
 };

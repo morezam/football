@@ -1,4 +1,3 @@
-import React from 'react';
 import Lineup from './Lineup';
 import { TeamDetails } from '../../types/lineupInterface';
 import NotFound from '../NotFound';

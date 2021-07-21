@@ -1,5 +1,3 @@
-import React, { FC } from 'react';
-
 import styles from './stats.module.css';
 
 interface StatProps {
@@ -10,7 +8,7 @@ interface StatProps {
 	}[];
 }
 
-const Statistic: FC<StatProps> = ({ stats }) => {
+const Statistic = ({ stats }: StatProps) => {
 	return (
 		<div>
 			{stats.map(stat => {

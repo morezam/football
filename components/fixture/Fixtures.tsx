@@ -6,6 +6,7 @@ import GameDetails from './GameDetails';
 import { Game } from '../../types/gameInterface';
 import { favLeagues } from '../../lib/favLeagues';
 import { createDateForCalnedar } from '../../lib/createDateForCalnedar';
+import NotFound from '../NotFound';
 
 interface FixturesProps {
 	date: Date;
@@ -36,9 +37,15 @@ const Fixtures = ({ date }: FixturesProps) => {
 			mounted = false;
 		};
 	}, [date]);
+
+	if (games) {
+		const hey = favLeagues(games);
+		console.log(hey);
+	}
+
 	return (
 		<>
-			{games &&
+			{games && favLeagues(games).length > 0 ? (
 				favLeagues(games).map(game => (
 					<ul className={styles.parentList} key={game.league.id}>
 						<li>
@@ -58,7 +65,10 @@ const Fixtures = ({ date }: FixturesProps) => {
 							</div>
 						</li>
 					</ul>
-				))}
+				))
+			) : (
+				<NotFound title="Matches" />
+			)}
 		</>
 	);
 };

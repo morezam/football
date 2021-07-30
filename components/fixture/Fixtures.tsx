@@ -7,6 +7,7 @@ import { Game } from '../../types/gameInterface';
 import { favLeagues } from '../../lib/favLeagues';
 import { createDateForCalnedar } from '../../lib/createDateForCalnedar';
 import NotFound from '../NotFound';
+import Spinner from '../Spinner';
 
 interface FixturesProps {
 	date: Date;
@@ -14,8 +15,10 @@ interface FixturesProps {
 
 const Fixtures = ({ date }: FixturesProps) => {
 	const [games, setGames] = useState<Game[]>();
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		const td = createDateForCalnedar(date);
 		let mounted = true;
 		const req = async () => {
@@ -28,9 +31,13 @@ const Fixtures = ({ date }: FixturesProps) => {
 				.then(res => {
 					if (mounted) {
 						setGames(res.data.response);
+						setLoading(false);
 					}
 				})
-				.catch(e => console.log(e));
+				.catch(e => {
+					setLoading(false);
+					throw new Error(e);
+				});
 		};
 		req();
 		return () => {
@@ -38,9 +45,8 @@ const Fixtures = ({ date }: FixturesProps) => {
 		};
 	}, [date]);
 
-	if (games) {
-		const hey = favLeagues(games);
-		console.log(hey);
+	if (loading) {
+		return <Spinner />;
 	}
 
 	return (

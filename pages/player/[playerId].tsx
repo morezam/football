@@ -1,14 +1,20 @@
 import { useRouter, NextRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import football from '../../api/football';
+import ErrorBoundary from '../../components/ErrorBoundary';
+import NotFound from '../../components/NotFound';
 import Player from '../../components/player/Player';
+import Spinner from '../../components/Spinner';
 import { PlayerStats } from '../../types/playerStat';
 
 const PlayerPage = () => {
 	const [playerDetail, setPlayerDetail] = useState<PlayerStats>();
+	const [loading, setLoading] = useState(false);
+
 	const router: NextRouter = useRouter();
 	const playerId = router.query?.playerId?.toString();
 	useEffect(() => {
+		setLoading(true);
 		const req = async () => {
 			const res = await football
 				.get('/players', {
@@ -18,17 +24,31 @@ const PlayerPage = () => {
 					},
 				})
 				.then(res => {
+					console.log(res.data.response[0]);
 					setPlayerDetail(res.data.response[0]);
+					setLoading(false);
 				})
-				.catch(e => console.log(e));
+				.catch(e => {
+					setLoading(false);
+					throw new Error(e);
+				});
 		};
 		req();
 	}, [playerId]);
-	if (!playerId) {
-		return <p>Player not found</p>;
+
+	if (loading) {
+		return <Spinner />;
 	}
 
-	return <Player playerDetail={playerDetail} />;
+	return (
+		<ErrorBoundary>
+			{playerDetail ? (
+				<Player playerDetail={playerDetail} />
+			) : (
+				<NotFound title="Player" />
+			)}
+		</ErrorBoundary>
+	);
 };
 
 export default PlayerPage;

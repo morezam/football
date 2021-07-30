@@ -24,7 +24,9 @@ const H2H = ({ homeId, awayId }: H2HProps) => {
 				.then(res => {
 					setH2h(res.data.response);
 				})
-				.catch(e => console.log(e));
+				.catch(e => {
+					throw new Error(e);
+				});
 		};
 		req();
 	}, [homeId, awayId]);

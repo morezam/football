@@ -5,10 +5,7 @@ import styles from './player.module.css';
 import { PlayerStats } from '../../types/playerStat';
 import Back from '../Back';
 
-const Player = ({ playerDetail }: { playerDetail?: PlayerStats }) => {
-	if (!playerDetail) {
-		return <p>Loading...</p>;
-	}
+const Player = ({ playerDetail }: { playerDetail: PlayerStats }) => {
 	return (
 		<div className={styles.parent}>
 			<Back>
@@ -54,6 +51,10 @@ const Player = ({ playerDetail }: { playerDetail?: PlayerStats }) => {
 							<PlayerStat label="Appearences" stat={stat.games.appearences} />
 							<PlayerStat label="Fixed" stat={stat.games.lineups} />
 							<PlayerStat label="Goals" stat={stat.goals.total} />
+							<PlayerStat
+								label="Rating"
+								stat={stat.games.rating && Number(stat.games.rating).toFixed(1)}
+							/>
 							<PlayerStat label="Assists" stat={stat.goals.assists} />
 							<PlayerStat label="Yellow Cards" stat={stat.cards.yellow} />
 							<PlayerStat label="Red Cards" stat={stat.cards.red} />

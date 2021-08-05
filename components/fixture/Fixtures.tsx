@@ -8,13 +8,19 @@ import { favLeagues } from '../../lib/favLeagues';
 import { createDateForCalnedar } from '../../lib/createDateForCalnedar';
 import NotFound from '../NotFound';
 import Spinner from '../Spinner';
+import { League } from '../../types/league';
 
 interface FixturesProps {
 	date: Date;
 }
 
+interface FavGames {
+	league: League;
+	games: Game[];
+}
+
 const Fixtures = ({ date }: FixturesProps) => {
-	const [games, setGames] = useState<Game[]>();
+	const [games, setGames] = useState<FavGames[]>();
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -30,7 +36,8 @@ const Fixtures = ({ date }: FixturesProps) => {
 				})
 				.then(res => {
 					if (mounted) {
-						setGames(res.data.response);
+						const favGames = favLeagues(res.data.response);
+						setGames(favGames);
 						setLoading(false);
 					}
 				})
@@ -51,8 +58,8 @@ const Fixtures = ({ date }: FixturesProps) => {
 
 	return (
 		<>
-			{games && favLeagues(games).length > 0 ? (
-				favLeagues(games).map(game => (
+			{games ? (
+				games.map(game => (
 					<ul className={styles.parentList} key={game.league.id}>
 						<li>
 							<div className={styles.title}>

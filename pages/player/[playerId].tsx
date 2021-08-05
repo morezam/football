@@ -24,7 +24,6 @@ const PlayerPage = () => {
 					},
 				})
 				.then(res => {
-					console.log(res.data.response[0]);
 					setPlayerDetail(res.data.response[0]);
 					setLoading(false);
 				})

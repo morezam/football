@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import GameDetails from '../fixture/GameDetails';
 import styles from './h2h.module.css';
 import { Game } from '../../types/gameInterface';
-import football from '../../api/football';
 import { createHRDate } from '../../lib/createHRDate';
+import { ReturnedData } from '../../types/dataInterfac';
 
 interface H2HProps {
 	homeId?: number | string;
@@ -11,30 +11,16 @@ interface H2HProps {
 }
 
 const H2H = ({ homeId, awayId }: H2HProps) => {
-	const [h2h, setH2h] = useState<Game[]>();
-
-	useEffect(() => {
-		const req = async () => {
-			const res = await football
-				.get('/fixtures/headtohead', {
-					params: {
-						h2h: `${homeId}-${awayId}`,
-					},
-				})
-				.then(res => {
-					setH2h(res.data.response);
-				})
-				.catch(e => {
-					throw new Error(e);
-				});
-		};
-		req();
-	}, [homeId, awayId]);
+	const { data: h2h } = useQuery<ReturnedData<Game[]>>([
+		'head-to-head',
+		'/fixtures/headtohead',
+		{ h2h: `${homeId}-${awayId}` },
+	]);
 
 	return (
 		<div>
 			{h2h &&
-				h2h
+				h2h.response
 					.sort(
 						(a, b) =>
 							new Date(b.fixture.date).getTime() -

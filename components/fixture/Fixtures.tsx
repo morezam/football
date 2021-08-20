@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import football from '../../api/football';
+import { useQuery } from 'react-query';
 import styles from './fixture.module.css';
 import GameDetails from './GameDetails';
 import { Game } from '../../types/gameInterface';
@@ -8,59 +7,32 @@ import { favLeagues } from '../../lib/favLeagues';
 import { createDateForCalnedar } from '../../lib/createDateForCalnedar';
 import NotFound from '../NotFound';
 import Spinner from '../Spinner';
-import { League } from '../../types/league';
+import { ReturnedData } from '../../types/dataInterfac';
 
 interface FixturesProps {
 	date: Date;
 }
 
-interface FavGames {
-	league: League;
-	games: Game[];
-}
-
 const Fixtures = ({ date }: FixturesProps) => {
-	const [games, setGames] = useState<FavGames[]>();
-	const [loading, setLoading] = useState(false);
+	const td = createDateForCalnedar(date);
+	const { data, isLoading } = useQuery<ReturnedData<Game[]>>([
+		'fixtures',
+		'/fixtures',
+		{ date: td },
+	]);
 
-	useEffect(() => {
-		setLoading(true);
-		const td = createDateForCalnedar(date);
-		let mounted = true;
-		const req = async () => {
-			const res = await football
-				.get('/fixtures', {
-					params: {
-						date: td,
-					},
-				})
-				.then(res => {
-					if (mounted) {
-						const favGames = favLeagues(res.data.response);
-						setGames(favGames);
-						setLoading(false);
-					}
-				})
-				.catch(e => {
-					setLoading(false);
-					throw new Error(e);
-				});
-		};
-		req();
-		return () => {
-			mounted = false;
-		};
-	}, [date]);
-
-	if (loading) {
+	if (isLoading) {
 		return <Spinner />;
 	}
 
 	return (
 		<>
-			{games ? (
-				games.map(game => (
-					<ul className={styles.parentList} key={game.league.id}>
+			{data ? (
+				favLeagues(data.response).map(game => (
+					<ul
+						className={styles.parentList}
+						key={game.league.id}
+						data-testid="games">
 						<li>
 							<div className={styles.title}>
 								<Image
@@ -69,7 +41,9 @@ const Fixtures = ({ date }: FixturesProps) => {
 									height={35}
 									width={35}
 								/>
-								<p>{game.league.name}</p>
+								<p>
+									{game.league.name}- {game.league.round}
+								</p>
 							</div>
 							<div className={styles.games}>
 								{game.games.map(match => (

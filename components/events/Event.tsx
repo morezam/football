@@ -59,7 +59,7 @@ const Event = ({ type, player, assist, detail, home }: EventTypeProps) => {
 				alignItems: 'center',
 				flexDirection: `${home ? 'row' : 'row-reverse'}`,
 			}}>
-			<p style={{ margin: '0 1rem' }}>{changeType(type)}</p>
+			<div style={{ margin: '0 1rem' }}>{changeType(type)}</div>
 			<div
 				style={{
 					display: 'flex',

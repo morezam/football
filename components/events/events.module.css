@@ -25,4 +25,8 @@
 	.parent {
 		font-size: 1.6rem;
 	}
+
+	.time {
+		padding: 0 0.5rem;
+	}
 }

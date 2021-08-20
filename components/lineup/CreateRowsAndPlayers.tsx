@@ -18,6 +18,7 @@ const CreateRowsAndPlayers = ({ rows, playersObject, home }: RowProps) => {
 					id={`row-${home ? 'h' : 'a'}-${i + 1}`}
 					style={{
 						gridTemplateColumns: `repeat(${row}, 1fr)`,
+						gridColumnGap: 5 - +row + 'rem',
 						color: '#fff',
 						gridRow: `${rows.length - i}/${rows.length - i + 1}`,
 					}}>

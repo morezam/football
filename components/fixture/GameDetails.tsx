@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { minutesSinceGameBegan } from '../../lib/minutesSinceGameBegan';
 import { Game } from '../../types/gameInterface';
 import styles from './fixture.module.css';
 
@@ -9,6 +10,10 @@ const GameDetails = ({ game }: { game: Game }) => {
 		gameDate.getMinutes() === 0 ? '00' : gameDate.getMinutes()
 	} `;
 
+	const minute = minutesSinceGameBegan(
+		game.fixture.status.elapsed,
+		game.fixture.status.short
+	);
 	const timeOrGoal = (status: string) => {
 		if (status === 'NS' || status === 'TBD') {
 			return time;
@@ -26,12 +31,18 @@ const GameDetails = ({ game }: { game: Game }) => {
 	return (
 		<Link href={'/' + game.fixture.id}>
 			<a className={styles.gameLink}>
+				<span
+					className={styles.minute}
+					style={{ backgroundColor: minute?.color }}>
+					{minute?.text}
+				</span>
 				<div className={styles.team}>
 					<Image
 						src={game.teams.home.logo}
 						alt={game.teams.home.name}
-						width={60}
-						height={60}
+						className={styles.teamImg}
+						width={50}
+						height={50}
 					/>
 					<p>{game.teams.home.name}</p>
 				</div>
@@ -40,8 +51,8 @@ const GameDetails = ({ game }: { game: Game }) => {
 					<Image
 						src={game.teams.away.logo}
 						alt={game.teams.away.name}
-						width={60}
-						height={60}
+						width={50}
+						height={50}
 					/>
 					<p style={{ justifySelf: 'baseline' }}>{game.teams.away.name}</p>
 				</div>

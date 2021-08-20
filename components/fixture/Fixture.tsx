@@ -20,17 +20,17 @@ const FixtureDetail = ({ game }: GameProps) => {
 		<div className={styles.fixture}>
 			<Back>
 				<Link href="/">
-					<a className={styles.back}>Back To all Games</a>
+					<a className={styles.back}>Back</a>
 				</Link>
 			</Back>
 			<div className={styles.teamDet}>
 				<Image
 					alt={game.teams.home.name}
 					src={game.teams.home.logo}
-					width={70}
-					height={70}
+					width={60}
+					height={60}
 				/>
-				{game.teams.home.name}
+				<p>{game.teams.home.name}</p>
 			</div>
 			<div className={styles.result}>
 				{game.fixture.status.short === 'NS'
@@ -41,10 +41,10 @@ const FixtureDetail = ({ game }: GameProps) => {
 				<Image
 					alt={game.teams.away.name}
 					src={game.teams.away.logo}
-					width={70}
-					height={70}
+					width={60}
+					height={60}
 				/>
-				{game.teams.away.name}
+				<p>{game.teams.away.name}</p>
 			</div>
 		</div>
 	);

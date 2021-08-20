@@ -3,7 +3,6 @@ import football from '../api/football';
 import { errorExist, errorMessage } from './errorHandle';
 
 export const defaultQueryFn = async (context: QueryFunctionContext) => {
-	console.log(context.queryKey);
 	const [, path, params] = context.queryKey as [
 		string,
 		string,

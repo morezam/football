@@ -25,3 +25,9 @@
 		grid-template-columns: 4rem 1fr 4rem;
 	}
 }
+@media (max-width: 400px) {
+	.stat {
+		font-size: 1.5rem;
+		grid-template-columns: 3rem 1fr 3rem;
+	}
+}

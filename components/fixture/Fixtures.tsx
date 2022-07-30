@@ -15,6 +15,7 @@ interface FixturesProps {
 
 const Fixtures = ({ date }: FixturesProps) => {
 	const td = createDateForCalnedar(date);
+	let favLeaguesArray;
 	const { data, isLoading } = useQuery<ReturnedData<Game[]>>([
 		'fixtures',
 		'/fixtures',
@@ -25,10 +26,14 @@ const Fixtures = ({ date }: FixturesProps) => {
 		return <Spinner />;
 	}
 
+	if (data) {
+		favLeaguesArray = favLeagues(data.response);
+	}
+
 	return (
 		<>
-			{data ? (
-				favLeagues(data.response).map(game => (
+			{favLeaguesArray && favLeaguesArray.length > 0 ? (
+				favLeaguesArray.map(game => (
 					<ul
 						className={styles.parentList}
 						key={game.league.id}

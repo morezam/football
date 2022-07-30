@@ -14,11 +14,11 @@ const DarkModeToggle = ({ darkMode, setDarkMode }: DarkModeToggleProps) => {
 	return (
 		<div onClick={onBtnClick} className={styles.darkMode}>
 			<div className={styles.body}>
-				<div
+				<button
 					className={styles.circle}
 					style={{
 						left: `${darkMode === 'light' ? '0' : '2rem'}`,
-					}}></div>
+					}}></button>
 			</div>
 		</div>
 	);

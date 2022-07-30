@@ -5,11 +5,7 @@ import Substitutes from './Substitutes';
 import styles from './Lineup.module.css';
 
 const Lineups = ({ lineup }: { lineup?: TeamDetails[] }) => {
-	if (!lineup) {
-		return <p>Loading...</p>;
-	}
-
-	if (lineup.length === 0) {
+	if (!lineup || lineup.length === 0) {
 		return <NotFound title="Lineup" />;
 	}
 

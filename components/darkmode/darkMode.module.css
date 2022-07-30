@@ -26,4 +26,5 @@
 	background-color: var(--text-color);
 	border-radius: 50%;
 	position: absolute;
+	cursor: pointer;
 }

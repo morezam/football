@@ -7,33 +7,32 @@ import { favLeagues } from '../../lib/favLeagues';
 import { createDateForCalnedar } from '../../lib/createDateForCalnedar';
 import NotFound from '../NotFound';
 import Spinner from '../Spinner';
-import { ReturnedData } from '../../types/dataInterfac';
 
 interface FixturesProps {
 	date: Date;
 }
 
+interface Returned {
+	response: Game[];
+}
+
 const Fixtures = ({ date }: FixturesProps) => {
 	const td = createDateForCalnedar(date);
-	let favLeaguesArray;
-	const { data, isLoading } = useQuery<ReturnedData<Game[]>>([
-		'fixtures',
-		'/fixtures',
-		{ date: td },
-	]);
+	const { data, isLoading } = useQuery(
+		['fixtures', '/fixtures', { date: td }],
+		{
+			select: (data: Returned) => favLeagues(data.response),
+		}
+	);
 
 	if (isLoading) {
 		return <Spinner />;
 	}
 
-	if (data) {
-		favLeaguesArray = favLeagues(data.response);
-	}
-
 	return (
 		<>
-			{favLeaguesArray && favLeaguesArray.length > 0 ? (
-				favLeaguesArray.map(game => (
+			{data && data.length > 0 ? (
+				data.map(game => (
 					<ul
 						className={styles.parentList}
 						key={game.league.id}

@@ -1,4 +1,3 @@
-import { useRouter, NextRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import FixtureDetail from '../../components/fixture/Fixture';
 import { Game } from '../../types/gameInterface';
@@ -12,16 +11,18 @@ import H2H from '../../components/h2h/H2H';
 import Spinner from '../../components/Spinner';
 import { ReturnedData } from '../../types/dataInterfac';
 import ErrorBoundary from '../../components/ErrorBoundary';
+import { GetServerSideProps } from 'next';
+import football from '../../api/football';
 
-const Fixture = () => {
-	const router: NextRouter = useRouter();
-	const id = router.query.fixtureId ? router.query.fixtureId.toString() : '';
-
-	const { data, isLoading } = useQuery<ReturnedData<Game[]>>([
-		'games',
-		'/fixtures',
-		{ id },
-	]);
+const Fixture = (props: { data: ReturnedData<Game[]>; id: string }) => {
+	const id = props.id;
+	const { data, isLoading } = useQuery<ReturnedData<Game[]>>(
+		['games', '/fixtures', { id }],
+		{
+			initialData: props.data,
+			staleTime: 1000 * 120,
+		}
+	);
 
 	const homeId = data?.response[0]?.teams.home.id;
 	const awayId = data?.response[0]?.teams.away.id;
@@ -62,6 +63,17 @@ const Fixture = () => {
 			</div>
 		</ErrorBoundary>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps = async context => {
+	const id = context.params?.fixtureId;
+	const { data } = await football.get('/fixtures', {
+		params: { id },
+	});
+
+	return {
+		props: { data, id },
+	};
 };
 
 export default Fixture;

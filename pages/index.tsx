@@ -5,7 +5,7 @@ import styles from '../style/homePage.module.css';
 import CustomDatePicker from '../components/CustomDatePicker';
 import DarkModeToggle from '../components/darkmode';
 
-export default function Home() {
+const Home = () => {
 	const [today, setToday] = useState(new Date());
 	const [open, setOpen] = useState(false);
 	const [darkMode, setDarkMode] = useState('light');
@@ -49,4 +49,6 @@ export default function Home() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Home;

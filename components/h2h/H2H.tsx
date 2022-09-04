@@ -11,11 +11,12 @@ interface H2HProps {
 }
 
 const H2H = ({ homeId, awayId }: H2HProps) => {
-	const { data: h2h } = useQuery<ReturnedData<Game[]>>([
-		'head-to-head',
-		'/fixtures/headtohead',
-		{ h2h: `${homeId}-${awayId}` },
-	]);
+	const { data: h2h } = useQuery<ReturnedData<Game[]>>(
+		['head-to-head', '/fixtures/headtohead', { h2h: `${homeId}-${awayId}` }],
+		{
+			staleTime: 10 * 60 * 1000,
+		}
+	);
 
 	return (
 		<div>

@@ -12,20 +12,29 @@ import Spinner from '../../components/Spinner';
 import { ReturnedData } from '../../types/dataInterfac';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import { GetServerSideProps } from 'next';
-import football from '../../api/football';
+import { useEffect, useState } from 'react';
 
-const Fixture = (props: { data: ReturnedData<Game[]>; id: string }) => {
+const Fixture = (props: { id: string }) => {
+	const [index, setIndex] = useState(0);
 	const id = props.id;
 	const { data, isLoading } = useQuery<ReturnedData<Game[]>>(
 		['games', '/fixtures', { id }],
 		{
-			initialData: props.data,
-			staleTime: 1000 * 120,
+			staleTime: 10 * 60 * 1000,
 		}
 	);
 
 	const homeId = data?.response[0]?.teams.home.id;
 	const awayId = data?.response[0]?.teams.away.id;
+
+	useEffect(() => {
+		const tabIndex = localStorage.getItem('tabIndex');
+		tabIndex && setIndex(+tabIndex);
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem('tabIndex', index.toString());
+	}, [index]);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -44,7 +53,7 @@ const Fixture = (props: { data: ReturnedData<Game[]>; id: string }) => {
 					<FixtureDetail game={data?.response[0]} />
 				</div>
 				<div>
-					<Tabs>
+					<Tabs index={index} setIndex={setIndex}>
 						<Tab title="Match Facts">
 							<Events homeId={homeId} events={data?.response[0]?.events} />
 							<Facts fixture={data?.response[0]?.fixture} />
@@ -67,12 +76,9 @@ const Fixture = (props: { data: ReturnedData<Game[]>; id: string }) => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
 	const id = context.params?.fixtureId;
-	const { data } = await football.get('/fixtures', {
-		params: { id },
-	});
 
 	return {
-		props: { data, id },
+		props: { id },
 	};
 };
 

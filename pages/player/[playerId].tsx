@@ -7,17 +7,13 @@ import Spinner from '../../components/Spinner';
 import { ReturnedData } from '../../types/dataInterfac';
 import { PlayerStats } from '../../types/playerStat';
 
-const PlayerPage = (props: {
-	id: string;
-	data: ReturnedData<PlayerStats[]>;
-}) => {
+const PlayerPage = (props: { id: string }) => {
 	const playerId = props.id;
 
 	const { data, isLoading } = useQuery<ReturnedData<PlayerStats[]>>(
 		['players', '/players', { id: playerId, season: new Date().getFullYear() }],
 		{
-			initialData: props.data,
-			staleTime: 1000 * 5 * 60,
+			staleTime: 1000 * 10 * 60,
 		}
 	);
 
@@ -38,19 +34,9 @@ const PlayerPage = (props: {
 
 export const getServerSideProps: GetServerSideProps = async context => {
 	const id = context.params?.playerId;
-	const { data } = await football.get('/players', {
-		params: {
-			id,
-			season: new Date().getFullYear(),
-		},
-	});
-	if (!data || !id) {
-		return {
-			notFound: true,
-		};
-	}
+
 	return {
-		props: { id, data },
+		props: { id },
 	};
 };
 

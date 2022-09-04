@@ -5,7 +5,6 @@
 	font-size: 1.8rem;
 	list-style: none;
 	max-width: 70rem;
-	margin: 2rem auto;
 	justify-content: center;
 	z-index: 10;
 	position: relative;
@@ -13,11 +12,28 @@
 
 .li {
 	cursor: pointer;
+	padding: 1.5rem;
+	color: var(--gray-2);
+}
+
+.clicked {
+	border-bottom: 0.3rem solid aqua;
 }
 
 @media (max-width: 600px) {
 	.tabList {
-		grid-column-gap: 1.5rem;
-		font-size: 1.5rem;
+		overflow: auto;
+		justify-content: start;
+		grid-column-gap: 1rem;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 	}
+
+	.tabList::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.container::-webkit-scrollbar {
+	display: none; /* Safari and Chrome */
 }

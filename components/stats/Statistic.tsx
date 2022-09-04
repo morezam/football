@@ -19,23 +19,29 @@ const Statistic = ({ stats }: StatProps) => {
 					<div className={styles.stat} key={stat.title}>
 						<p
 							style={{ textAlign: 'center' }}
-							className={
-								+stat.h.toString().replace('%', '') >
-								+stat.a.toString().replace('%', '')
-									? styles.bigger
-									: ''
-							}>
+							className={`
+								${
+									+stat.h.toString().replace('%', '') >
+									+stat.a.toString().replace('%', '')
+										? styles.bigger
+										: ''
+								}
+									${styles.statNumber}
+							`}>
 							{stat.h}
 						</p>
 						<p style={{ justifySelf: 'center' }}>{stat.title}</p>
 						<p
 							style={{ textAlign: 'center' }}
-							className={
-								+stat.a.toString().replace('%', '') >
-								+stat.h.toString().replace('%', '')
-									? styles.bigger
-									: ''
-							}>
+							className={`
+								${
+									+stat.a.toString().replace('%', '') >
+									+stat.h.toString().replace('%', '')
+										? styles.bigger
+										: ''
+								}
+									${styles.statNumber}
+							`}>
 							{stat.a}
 						</p>
 					</div>

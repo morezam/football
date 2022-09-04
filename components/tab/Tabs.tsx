@@ -1,12 +1,13 @@
-import { ReactElement, useState } from 'react';
+import { Dispatch, ReactElement, SetStateAction, useState } from 'react';
 import styles from './tab.module.css';
 
 interface TabsProps {
 	children?: ReactElement[];
+	index: number;
+	setIndex: Dispatch<SetStateAction<number>>;
 }
 
-const Tabs = ({ children }: TabsProps) => {
-	const [index, setIndex] = useState(0);
+const Tabs = ({ children, index, setIndex }: TabsProps) => {
 	if (!children) {
 		return null;
 	}
@@ -14,7 +15,10 @@ const Tabs = ({ children }: TabsProps) => {
 		<div>
 			<ul className={styles.tabList}>
 				{children.map((child, i) => (
-					<li className={styles.li} key={i} onClick={() => setIndex(i)}>
+					<li
+						className={`${styles.li} ${i === index ? styles.clicked : null}`}
+						key={i}
+						onClick={() => setIndex(i)}>
 						{child.props.title}
 					</li>
 				))}

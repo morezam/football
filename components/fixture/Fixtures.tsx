@@ -22,6 +22,7 @@ const Fixtures = ({ date }: FixturesProps) => {
 		['fixtures', '/fixtures', { date: td }],
 		{
 			select: (data: Returned) => favLeagues(data.response),
+			staleTime: 10 * 60 * 1000,
 		}
 	);
 

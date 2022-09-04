@@ -24,6 +24,7 @@ body {
 	--gray-3: #687980;
 	--text-color: #333;
 	--background: #fdfaf6;
+	--green: rgb(3, 127, 3);
 }
 
 [data-theme='dark'] {
@@ -32,6 +33,7 @@ body {
 	--gray-3: #aaaaaa;
 	--background: #1a1c20;
 	--text-color: #f4f4f4;
+	--green: rgb(77, 212, 77);
 }
 
 .datePicker {

@@ -1,4 +1,4 @@
-import { Statistic } from '../types/teamStat';
+import { Statistic } from '@customTypes/teamStat';
 
 export const createStatObject = (
 	title: string,

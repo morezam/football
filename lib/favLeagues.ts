@@ -1,4 +1,4 @@
-import { Game } from '../types/gameInterface';
+import { Game } from '@customTypes/gameInterface';
 
 export const favLeagues = (arr: Game[]) => {
 	// Ids of some of the leagues that I care about.

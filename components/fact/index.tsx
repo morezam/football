@@ -1,14 +1,15 @@
-import { Fixture } from '../../types/gameInterface';
+import { Fixture } from '@customTypes/gameInterface';
 import NotFound from '../NotFound';
 import styles from './facts.module.css';
 import Fact from './Fact';
-import { createHRDate } from '../../lib/createHRDate';
+import { createHRDate } from '@lib/createHRDate';
 
 const Facts = ({ fixture }: { fixture?: Fixture }) => {
 	if (!fixture) {
 		return <NotFound title="Facts" />;
 	}
 	const matchDate = createHRDate(fixture.date);
+
 	return (
 		<div className={styles.parent}>
 			{fixture.date && <Fact label="Match date" value={matchDate} />}

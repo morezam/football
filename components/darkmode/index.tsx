@@ -1,27 +1,32 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, memo, SetStateAction } from 'react';
 import styles from './darkMode.module.css';
 
 interface DarkModeToggleProps {
-	darkMode: string;
-	setDarkMode: Dispatch<SetStateAction<string>>;
+	darkMode: boolean;
+	setDarkMode: Dispatch<SetStateAction<boolean>>;
 }
 
-const DarkModeToggle = ({ darkMode, setDarkMode }: DarkModeToggleProps) => {
-	const onBtnClick = () => {
-		setDarkMode(darkMode === 'light' ? 'dark' : 'light');
-	};
+const DarkModeToggle = memo(
+	({ darkMode, setDarkMode }: DarkModeToggleProps) => {
+		const onBtnClick = () => {
+			setDarkMode(!darkMode);
+		};
 
-	return (
-		<div onClick={onBtnClick} className={styles.darkMode}>
-			<div className={styles.body}>
-				<button
-					className={styles.circle}
-					style={{
-						left: `${darkMode === 'light' ? '0' : '2rem'}`,
-					}}></button>
+		return (
+			<div onClick={onBtnClick} className={styles.darkMode}>
+				<div className={styles.body}>
+					<button
+						aria-label="dark mode toggler"
+						className={styles.circle}
+						style={{
+							left: `${darkMode ? '2rem' : '0'}`,
+						}}></button>
+				</div>
 			</div>
-		</div>
-	);
-};
+		);
+	}
+);
+
+DarkModeToggle.displayName = 'DarkModeToggle';
 
 export default DarkModeToggle;

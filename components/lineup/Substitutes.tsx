@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { Player } from '../../types/lineupInterface';
+import { Player } from '@customTypes/lineupInterface';
 import styles from './Lineup.module.css';
 
 interface SubProps {

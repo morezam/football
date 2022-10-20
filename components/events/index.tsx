@@ -1,6 +1,6 @@
 import styles from './events.module.css';
 import EventDetails from './Event';
-import { Event } from '../../types/eventInterface';
+import { Event } from '@customTypes/eventInterface';
 
 interface EventsProps {
 	homeId?: number | string;

@@ -1,27 +1,28 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { useQuery } from 'react-query';
 import styles from './fixture.module.css';
-import GameDetails from './GameDetails';
-import { Game } from '../../types/gameInterface';
-import { favLeagues } from '../../lib/favLeagues';
-import { createDateForCalnedar } from '../../lib/createDateForCalnedar';
+import { Game } from '@customTypes/gameInterface';
+import { favLeagues } from '@lib/favLeagues';
+import { createDateForCalendar } from '@lib/createDateForCalendar';
 import NotFound from '../NotFound';
 import Spinner from '../Spinner';
+import dynamic from 'next/dynamic';
+import { memo, Suspense } from 'react';
+import { ReturnedData } from '@customTypes/dataInterface';
+
+const GameDetails = dynamic(() => import('./GameDetails'));
 
 interface FixturesProps {
 	date: Date;
 }
 
-interface Returned {
-	response: Game[];
-}
+const Fixtures = memo(({ date }: FixturesProps) => {
+	const td = createDateForCalendar(date);
 
-const Fixtures = ({ date }: FixturesProps) => {
-	const td = createDateForCalnedar(date);
 	const { data, isLoading } = useQuery(
 		['fixtures', '/fixtures', { date: td }],
 		{
-			select: (data: Returned) => favLeagues(data.response),
+			select: (data: ReturnedData<Game[]>) => favLeagues(data.response),
 			staleTime: 10 * 60 * 1000,
 		}
 	);
@@ -43,17 +44,20 @@ const Fixtures = ({ date }: FixturesProps) => {
 								<Image
 									src={game.league.logo}
 									alt={game.league.name}
+									className={styles.leagueLogo}
 									height={35}
 									width={35}
 								/>
 								<p>
-									{game.league.name}- {game.league.round}
+									{game.league.name} - {game.league.round}
 								</p>
 							</div>
 							<div className={styles.games}>
-								{game.games.map(match => (
-									<GameDetails key={match.fixture.id} game={match} />
-								))}
+								<Suspense fallback={<p>...</p>}>
+									{game.games.map(match => (
+										<GameDetails key={match.fixture.id} game={match} />
+									))}
+								</Suspense>
 							</div>
 						</li>
 					</ul>
@@ -63,6 +67,8 @@ const Fixtures = ({ date }: FixturesProps) => {
 			)}
 		</>
 	);
-};
+});
+
+Fixtures.displayName = 'Fixtures';
 
 export default Fixtures;

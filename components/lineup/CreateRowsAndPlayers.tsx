@@ -1,5 +1,5 @@
 import styles from './Lineup.module.css';
-import { PlayersObject } from '../../lib/createPlayersObject';
+import { PlayersObject } from '@lib/createPlayersObject';
 import PlayerRow from './PlayerRow';
 
 interface RowProps {

@@ -5,6 +5,7 @@
 	font-size: 1.8rem;
 	list-style: none;
 	max-width: 70rem;
+	margin: auto;
 	justify-content: center;
 	z-index: 10;
 	position: relative;

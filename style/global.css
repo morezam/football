@@ -11,6 +11,12 @@ html {
 	font-size: 62.5%;
 }
 
+@media (max-width: 600px) {
+	html {
+		font-size: 55%;
+	}
+}
+
 body {
 	box-sizing: border-box;
 	font-family: 'Lato', sans-serif;
@@ -38,7 +44,7 @@ body {
 
 .datePicker {
 	font-size: 1.8rem !important;
-	margin-top: 6rem;
+	margin-top: -1.5rem;
 }
 
 .react-datepicker__triangle {

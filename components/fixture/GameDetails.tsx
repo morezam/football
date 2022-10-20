@@ -1,7 +1,7 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
-import { minutesSinceGameBegan } from '../../lib/minutesSinceGameBegan';
-import { Game } from '../../types/gameInterface';
+import { minutesSinceGameBegan } from '@lib/minutesSinceGameBegan';
+import { Game } from '@customTypes/gameInterface';
 import styles from './fixture.module.css';
 
 const GameDetails = ({ game }: { game: Game }) => {
@@ -29,7 +29,7 @@ const GameDetails = ({ game }: { game: Game }) => {
 	};
 
 	return (
-		<Link href={'/' + game.fixture.id}>
+		<Link href={`/fixture/${game.fixture.id}`}>
 			<a className={styles.gameLink}>
 				<span
 					className={styles.minute}
@@ -40,9 +40,11 @@ const GameDetails = ({ game }: { game: Game }) => {
 					<Image
 						src={game.teams.home.logo}
 						alt={game.teams.home.name}
+						placeholder="blur"
+						blurDataURL="/team-placeholder.webp"
 						className={styles.teamImg}
-						width={50}
-						height={50}
+						width={40}
+						height={40}
 					/>
 					<p>{game.teams.home.name}</p>
 				</div>
@@ -51,8 +53,11 @@ const GameDetails = ({ game }: { game: Game }) => {
 					<Image
 						src={game.teams.away.logo}
 						alt={game.teams.away.name}
-						width={50}
-						height={50}
+						placeholder="blur"
+						className={styles.teamImg}
+						blurDataURL="/team-placeholder.webp"
+						width={40}
+						height={40}
 					/>
 					<p style={{ justifySelf: 'baseline' }}>{game.teams.away.name}</p>
 				</div>

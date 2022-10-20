@@ -1,25 +1,36 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import PlayerProfile from './PlayerProfile';
 import PlayerStat from './PlayerStat';
 import styles from './player.module.css';
-import { PlayerStats } from '../../types/playerStat';
+import { PlayerStats } from '@customTypes/playerStat';
 import Back from '../Back';
+import Head from 'next/head';
 
 const Player = ({ playerDetail }: { playerDetail: PlayerStats }) => {
+	const playerFullName = `${playerDetail.player.firstname} ${playerDetail.player.lastname}`;
+
 	return (
 		<div className={styles.parent}>
+			<Head>
+				<title>{playerFullName}</title>
+				<meta
+					name="description"
+					content={`${playerFullName}'s information and statistics `}
+				/>
+			</Head>
 			<Back>
 				<p>Back to game</p>
 			</Back>
 			<div className={styles.detail}>
-				<h2 className={styles.name}>
-					{playerDetail.player.firstname} {playerDetail.player.lastname}
-				</h2>
+				<h2 className={styles.name}>{playerFullName}</h2>
 				<Image
 					src={playerDetail.player.photo}
-					alt={playerDetail.player.name}
+					alt={`Image of ${playerDetail.player.name}`}
 					height={150}
 					width={150}
+					title={playerDetail.player.name}
+					placeholder="blur"
+					blurDataURL="/ball.svg"
 					className={styles.img}
 				/>
 			</div>

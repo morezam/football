@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import GameDetails from '../fixture/GameDetails';
 import styles from './h2h.module.css';
-import { Game } from '../../types/gameInterface';
-import { createHRDate } from '../../lib/createHRDate';
-import { ReturnedData } from '../../types/dataInterfac';
+import { Game } from '@customTypes/gameInterface';
+import { createHRDate } from '@lib/createHRDate';
+import { ReturnedData } from '@customTypes/dataInterface';
 
 interface H2HProps {
 	homeId?: number | string;

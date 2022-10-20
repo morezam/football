@@ -1,4 +1,4 @@
-export const createDateForCalnedar = (date: Date) => {
+export const createDateForCalendar = (date: Date) => {
 	const dateArray = date.toLocaleString('en-US').split(',')[0].split('/');
 	const dateStr = `${dateArray[2]}-${addZero(dateArray[0])}-${addZero(
 		dateArray[1]

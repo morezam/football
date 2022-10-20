@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
-import styles from '../style/notfound.module.css';
+import styles from '@style/notfound.module.css';
 
 const NotFound = () => {
 	return (

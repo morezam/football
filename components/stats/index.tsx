@@ -1,7 +1,7 @@
-import { createStatObject } from '../../lib/createStatObject';
+import { createStatObject } from '@lib/createStatObject';
 import Statistic from './Statistic';
 import styles from './stats.module.css';
-import { TeamStat } from '../../types/teamStat';
+import { TeamStat } from '@customTypes/teamStat';
 import NotFound from '../NotFound';
 
 const Statistics = ({ stats }: { stats?: TeamStat[] }) => {

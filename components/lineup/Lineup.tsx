@@ -1,18 +1,19 @@
-import { TeamDetails } from '../../types/lineupInterface';
+import { TeamDetails } from '@customTypes/lineupInterface';
 import CreateRowsAndPlayers from './CreateRowsAndPlayers';
 import styles from './Lineup.module.css';
-import { createPlayersObject } from '../../lib/createPlayersObject';
+import { createPlayersObject } from '@lib/createPlayersObject';
+import { useMemo } from 'react';
 
-const Lineup = ({ home, datas }: { home: boolean; datas?: TeamDetails }) => {
-	if (!datas) {
-		return null;
-	}
-	const rows = datas.formation.split('-');
-	// add 1 beacuse goalkeaper's position is not in formation
+const Lineup = ({ home, lineup }: { home: boolean; lineup: TeamDetails }) => {
+	const rows = lineup.formation.split('-');
+	// add 1 because goalkeeper's position is not in formation
 	rows.unshift('1');
 
-	const playersDetail = datas.startXI.map(n => n.player);
-	const playersObject = createPlayersObject(playersDetail);
+	const playersDetail = lineup.startXI.map(n => n.player);
+	const playersObject = useMemo(
+		() => createPlayersObject(playersDetail),
+		[playersDetail]
+	);
 	return (
 		<div className={styles.parent}>
 			<div

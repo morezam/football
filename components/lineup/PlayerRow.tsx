@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { Player } from '../../lib/createPlayersObject';
+import Image from 'next/future/image';
+import { Player } from '@lib/createPlayersObject';
 import styles from './Lineup.module.css';
 
 interface PlayerRowProps {
@@ -23,8 +23,11 @@ const PlayerRow = ({ playerRow }: PlayerRowProps) => {
 							}}>
 							<Image
 								src={`https://media.api-sports.io/football/players/${player.id}.png`}
-								alt={player.name}
+								alt={`Image of ${player.name}`}
+								title={player.name}
 								className={styles.playerImg}
+								placeholder="blur"
+								blurDataURL="/player-placeholder.png"
 								width={40}
 								height={40}
 							/>

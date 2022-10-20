@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import { useQuery } from 'react-query';
-import football from '../../api/football';
-import NotFound from '../../components/NotFound';
-import Player from '../../components/player/Player';
-import Spinner from '../../components/Spinner';
-import { ReturnedData } from '../../types/dataInterfac';
-import { PlayerStats } from '../../types/playerStat';
+import NotFound from '@components/NotFound';
+import Player from '@components/player/Player';
+import Spinner from '@components/Spinner';
+import { ReturnedData } from '@customTypes/dataInterface';
+import { PlayerStats } from '@customTypes/playerStat';
 
 const PlayerPage = (props: { id: string }) => {
 	const playerId = props.id;
@@ -26,7 +26,12 @@ const PlayerPage = (props: { id: string }) => {
 			{data ? (
 				<Player playerDetail={data.response[0]} />
 			) : (
-				<NotFound title="Player" />
+				<>
+					<Head>
+						<title>Player Not Found!</title>
+					</Head>
+					<NotFound title="Player" />
+				</>
 			)}
 		</>
 	);

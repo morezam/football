@@ -1,6 +1,12 @@
 module.exports = {
 	reactStrictMode: true,
 	images: {
-		domains: ['media.api-sports.io'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'media.api-sports.io',
+			},
+		],
+		minimumCacheTTL: 31536000,
 	},
 };

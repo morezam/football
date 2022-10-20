@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import styles from './fixture.module.css';
-import { Game } from '../../types/gameInterface';
+import { Game } from '@customTypes/gameInterface';
 import Back from '../Back';
 import Link from 'next/link';
 
@@ -27,6 +27,9 @@ const FixtureDetail = ({ game }: GameProps) => {
 				<Image
 					alt={game.teams.home.name}
 					src={game.teams.home.logo}
+					placeholder="blur"
+					className={styles.teamLogo}
+					blurDataURL="/team-placeholder.webp"
 					width={60}
 					height={60}
 				/>
@@ -41,8 +44,11 @@ const FixtureDetail = ({ game }: GameProps) => {
 				<Image
 					alt={game.teams.away.name}
 					src={game.teams.away.logo}
+					className={styles.teamLogo}
 					width={60}
 					height={60}
+					placeholder="blur"
+					blurDataURL="/team-placeholder.webp"
 				/>
 				<p>{game.teams.away.name}</p>
 			</div>

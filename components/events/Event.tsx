@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import styles from './events.module.css';
 
 interface EventTypeProps {

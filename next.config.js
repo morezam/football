@@ -4,7 +4,7 @@ module.exports = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'media.api-sports.io',
+				hostname: '**.api-sports.io',
 			},
 		],
 		minimumCacheTTL: 31536000,
